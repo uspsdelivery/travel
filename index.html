@@ -1,112 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sign In</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyGo - Welcome</title>
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* Ensure full viewport and stacking */
-body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Fullscreen background video */
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  object-fit: cover;
-}
-
-/* Foreground container */
-.container {
-  background-color: transparent; /* slightly see-through */
-  padding: 30px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  width: 320px;
-  z-index: 1;
-}
-label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-    }
-
-    .password-wrapper {
-      position: relative;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      user-select: none;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Sign In</h2>
-    
-    <form id="signin-form">
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="you@example.com" required />
+  <div class="welcome-container">
+    <div class="welcome-image">
+  <video autoplay muted loop playsinline>
+    <source src="videos/homevidd.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
 
-    <label for="password">Password</label>
-    <div class="password-wrapper">
-      <input type="password" id="password" placeholder="************" required />
-      <span class="toggle-password" onclick="togglePassword()">👁</span>
+
+    <div class="welcome-content">
+      <h1>Welcome to SkyGo!</h1>
+      <p>Let's fly to where dreams become reality!</p>
+      <button class="welcome-btn btn-login" onclick="window.location.href='login.html'">Log In</button>
+      <button class="welcome-btn btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
     </div>
-
-    <button type="submit" id="signin-btn">Sign in</button>
-  </form>
-    <p>This project aims to create a user-friendly flight booking app that
-         simplifies searching, comparing, and booking tickets.
-          It offers real-time flight data, secure payments, and personalized 
-          features for a seamless travel experience</p>
-          <button class="welcome-btn btn-login" onclick="window.location.href='index.html'">Home</button>
   </div>
-
-  <script src="script.js"></script>
-
-  <script>
-    function togglePassword() {
-      const passwordInput = document.getElementById("password");
-      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-      passwordInput.setAttribute("type", type);
-    }
-
-    document.getElementById("signin-form").addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevent actual form submission
-
-      // Simulate successful login
-      // Optionally add validation/authentication logic here
-      window.location.href = "flight.html"; // Change to your redirect target
-    });
-  </script>
 </body>
 </html>
