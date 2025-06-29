@@ -1,0 +1,113 @@
+body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      max-width: 430px;
+      margin: auto;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 25px 20px 10px;
+      background-color: #fff;
+    }
+
+    .profile-header h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .profile-pic {
+  width: 80px;          /* Increased from 50px */
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ddd; /* Optional: adds a nice subtle border */
+ }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .section {
+  background: #fff;
+  margin: 15px 16px;
+  padding: 10px 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); /* soft shadow */
+ }
+ .section-title {
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #333;
+ }
+
+    .list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  will-change: transform;
+  border-radius: 8px;
+}
+
+.list-item:hover {
+  transform: translateY(-1px);
+  background-color: #f8f9fa;
+}
+
+.list-item:active {
+  transform: scale(0.97);
+  background-color: #eaeaea;
+}
+
+
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      z-index: 1000;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    .category-tab {
+      flex: 1;
+      border: none;
+      background: none;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .category-tab.active {
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .category-tab i {
+      display: block;
+      margin-bottom: 4px;
+    }
+h2{
+    font-size: 20px;
+}
+.section-title{
+ font-size: 25px;
+}

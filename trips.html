@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Trips</title>
+  <link rel="stylesheet" href="css/trips.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <h2>My trips</h2>
+
+  <!-- Tab buttons -->
+  <div class="tab-buttons">
+    <button class="tab-button" data-tab="upcoming">Upcoming</button>
+    <button class="tab-button active" data-tab="past">Past</button>
+  </div>
+
+  <!-- Upcoming Trips -->
+  <div id="upcoming" class="trip-section hidden">
+    <div class="trip-card">
+      <div class="trip-date">18 Dec 2024</div>
+      <div class="trip-info">
+        <span class="label">Qatar Airways</span>
+        <span class="label">Business</span>
+      </div>
+      <div class="trip-route">
+        <span>LAX</span>
+        <i data-lucide="plane"></i>
+        <span>CDG</span>
+      </div>
+      <div class="trip-time">
+        <span>15:30</span>
+        <span>→</span>
+        <span>10:15</span>
+      </div>
+      <div class="trip-extra">
+        <span><i data-lucide="user"></i> 1</span>
+        <span><i data-lucide="briefcase"></i> 2</span>
+        <strong>795$</strong>
+      </div>
+      <button class="rate-btn cancel-btn">Cancel Trip</button>
+    </div>
+  </div>
+
+  <!-- Past Trips -->
+  <div id="past" class="trip-section">
+    <div class="trip-card">
+      <div class="trip-date">9 Sep 2024</div>
+      <div class="trip-info">
+        <span class="label">Air Canada</span>
+        <span class="label">Economy</span>
+      </div>
+      <div class="trip-route">
+        <span>YYZ</span>
+        <i data-lucide="plane"></i>
+        <span>WAW</span>
+      </div>
+      <div class="trip-time">
+        <span>18:30</span>
+        <span>→</span>
+        <span>17:15</span>
+      </div>
+      <div class="trip-extra">
+        <span><i data-lucide="user"></i> 1</span>
+        <span><i data-lucide="briefcase"></i> 1</span>
+        <strong>387$</strong>
+      </div>
+      <button class="rate-btn">Rate the flight</button>
+    </div>
+
+    <div class="trip-card">
+      <div class="trip-date">5 Aug 2024</div>
+      <div class="trip-info">
+        <span class="label">Air Canada</span>
+        <span class="label">Economy</span>
+      </div>
+      <div class="trip-route">
+        <span>WAW</span>
+        <i data-lucide="plane"></i>
+        <span>YYZ</span>
+      </div>
+      <div class="trip-time">
+        <span>13:10</span>
+        <span>→</span>
+        <span>18:35</span>
+      </div>
+      <div class="trip-extra">
+        <span><i data-lucide="user"></i> 1</span>
+        <span><i data-lucide="briefcase"></i> 1</span>
+        <strong>462$</strong>
+      </div>
+      <button class="rate-btn">Rate the flight</button>
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <button class="category-tab" data-page="flight.html"><i data-lucide="plane"></i>Flights</button>
+    <button class="category-tab" data-page="saved.html"><i data-lucide="heart"></i>Saved</button>
+    <button class="category-tab active" data-page="trips.html"><i data-lucide="ticket"></i>My trips</button>
+    <button class="category-tab" data-page="profile.html"><i data-lucide="user-round"></i>Profile</button>
+  </div>
+
+  <!-- JavaScript for Tabs and Nav -->
+  <script>
+    lucide.createIcons();
+
+    // Tab Switching
+    const tabs = document.querySelectorAll('.tab-button');
+    const sections = document.querySelectorAll('.trip-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(sec => sec.classList.add('hidden'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.remove('hidden');
+      });
+    });
+
+    // Bottom nav navigation + active tab
+    const currentPage = location.pathname.split("/").pop();
+    document.querySelectorAll(".category-tab").forEach(button => {
+      const page = button.getAttribute("data-page");
+      if (page === currentPage) {
+        button.classList.add("active");
+      }
+
+      button.addEventListener("click", () => {
+        window.location.href = page;
+      });
+    });
+  </script>
+  <script src="trips.js"></script>
+  <!-- Toast Notification -->
+<div id="toast" class="toast">Trip canceled</div>
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcelona Explore</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/flight.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="search-box">
+      <div class="input-group">
+        <input type="text" placeholder="Warsaw">
+      </div>
+      <div class="input-group">
+        <input type="text" placeholder="Barcelona">
+      </div>
+      <div class="filters">
+        <!-- Dates Filter Button with Modal -->
+<div class="filter-wrapper">
+  <button class="filter-btn" id="openDateModal">
+    <i data-lucide="calendar-days"></i> Dates
+  </button>
+
+  <!-- Date Picker Modal -->
+  <div class="modal-overlay" id="dateModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeDateModal">&times;</span>
+      <div class="date-picker">
+        <div class="date-header">
+          <h2>Choose date</h2>
+          <div class="input-row">
+            <div class="date-input">
+              <label>Departure</label>
+              <input type="text" id="departure-date" readonly placeholder="Select" />
+            </div>
+            <div class="date-input">
+              <label>Return</label>
+              <input type="text" id="return-date" readonly placeholder="Select" />
+            </div>
+          </div>
+        </div>
+        <div class="calendar" id="calendar-container"></div>
+        <button class="select-btn" id="confirmDates">Select</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <!-- Passengers & Class Filter Button with Modal -->
+<div class="filter-wrapper">
+  <button class="filter-btn" id="openPassengerModal">
+    <i data-lucide="user"></i> Passengers.class
+  </button>
+
+  <!-- Passenger Modal -->
+  <div class="modal-overlay" id="passengerModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closePassengerModal">&times;</span>
+      <div class="passenger-modal-body">
+        <h2>Passengers and class</h2>
+
+        <div class="passenger-row">
+          <div>
+            <strong>Adults</strong>
+            <div class="sub-label">16 years and more</div>
+          </div>
+          <div class="counter">
+            <button class="minus" data-type="adult">−</button>
+            <span id="adultCount">1</span>
+            <button class="plus" data-type="adult">+</button>
+          </div>
+        </div>
+
+        <div class="passenger-row">
+          <div>
+            <strong>Children</strong>
+            <div class="sub-label">From 2 to 15 years inclusive</div>
+          </div>
+          <div class="counter">
+            <button class="minus" data-type="child">−</button>
+            <span id="childCount">0</span>
+            <button class="plus" data-type="child">+</button>
+          </div>
+        </div>
+
+        <div class="passenger-row">
+          <div>
+            <strong>Babies</strong>
+            <div class="sub-label">To 2 years</div>
+          </div>
+          <div class="counter">
+            <button class="minus" data-type="baby">−</button>
+            <span id="babyCount">0</span>
+            <button class="plus" data-type="baby">+</button>
+          </div>
+        </div>
+
+        <div class="class-select">
+          <label><input type="radio" name="travelClass" value="Economy" checked> Economy</label>
+          <label><input type="radio" name="travelClass" value="Comfortable"> Comfortable</label>
+          <label><input type="radio" name="travelClass" value="Business"> Business</label>
+          <label><input type="radio" name="travelClass" value="First class"> First class</label>
+        </div>
+
+        <button class="select-btn" id="confirmPassengers">Select</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <!-- Filters Button and Modal -->
+<div class="filter-wrapper">
+  <button class="filter-btn" id="openFiltersModal">
+    <i data-lucide="settings-2"></i> Filters
+  </button>
+
+  <div class="modal-overlay" id="filtersModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeFiltersModal">&times;</span>
+      <div class="filters-modal-body">
+        <div class="modal-header">
+          <h2>Filters</h2>
+          <button class="reset-btn" id="resetFilters">Reset</button>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="filter-section">
+          <h3>Price</h3>
+          <div class="price-range">
+  <label>Selected price</label>
+  <div class="price-display">
+    <span id="minPrice">0</span> - <span id="maxPrice">500</span>$
+  </div>
+  <div class="slider-container">
+    <input type="range" min="0" max="500" value="0" step="10" id="rangeMin">
+    <input type="range" min="0" max="500" value="500" step="10" id="rangeMax">
+    <div class="slider-track"></div>
+  </div>
+</div>
+        </div>
+
+        <!-- Stopovers Filter -->
+        <div class="filter-section">
+          <h3>Number of stopovers</h3>
+          <div class="radio-group" id="stopoversGroup">
+            <label><input type="radio" name="stopovers" value="direct"> Only direct</label>
+            <label><input type="radio" name="stopovers" value="1stop"> 1 stop</label>
+            <label><input type="radio" name="stopovers" value="2stops"> 2 stops</label>
+            <label><input type="radio" name="stopovers" value="any" checked> Any</label>
+          </div>
+        </div>
+
+        <!-- Trip Duration Filter -->
+        <div class="filter-section">
+          <h3>Trip duration</h3>
+          <div class="duration-range">
+            <span>Any duration</span>
+            <input type="range" min="1" max="24" value="24" id="durationSlider">
+            <span id="durationDisplay">Any</span>
+          </div>
+        </div>
+
+        <button class="select-btn" id="confirmFilters">Select</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <div class="section-title">Where to go in Barcelona?</div>
+    <div class="scroll-row">
+      <div class="card" onclick="alert('Park Guell details')">
+        <img src="image/park_guell.jpg" alt="Park Guell">
+        <div class="heart">❤</div>
+        <p>Park Guell</p>
+      </div>
+      <div class="card">
+        <img src="image/sagrada_familia.avif" alt="Sagrada Familia">
+        <div class="heart">❤</div>
+        <p>Sagrada Familia</p>
+      </div>
+      <div class="card">
+        <img src="image/casa_Batllo.jpg" alt="Casa Batllo">
+        <div class="heart">❤</div>
+        <p>Casa Batllo</p>
+      </div>
+      <div class="card">
+        <img src="image/bus_trip.jpg" alt="Sagrada Familia">
+        <div class="heart">❤</div>
+        <p>City Sightseeing Bus Tour: </p>
+      </div>
+      <div class="card">
+        <img src="image/Gaudi_Casa_Vicens.jpg" alt="Casa Batllo">
+        <div class="heart">❤</div>
+        <p>Gaudi´s Casa Vicens</p>
+      </div>
+      <div class="card">
+        <img src="image/Poble Espanyol Barcelona.jpg" alt="Sagrada Familia">
+        <div class="heart">❤</div>
+        <p>Poble Espanyol Barcelona</p>
+      </div>
+      <div class="card">
+        <img src="image/Ramblas, Old Town.jpg" alt="Casa Batllo">
+        <div class="heart">❤</div>
+        <p>Ramblas, Old Town, Gothic and Gaudi</p>
+      </div>
+      <div class="card">
+        <img src="image/Dali Museum.jpg" alt="Casa Batllo">
+        <div class="heart">❤</div>
+        <p>Dali Museum</p>
+      </div>
+    </div>
+
+    <div class="section-title">Barcelona hotels</div>
+    <div class="scroll-row">
+      <div class="card">
+        <img src="image/hotel-1.webp" alt="Hotel 1">
+        <div class="heart">❤</div>
+        <p>Casa Camper</p>
+        <div class="hotel-price">from 150$</div>
+      </div>
+      <div class="card">
+        <img src="image/hotel_2.avif" alt="Hotel 2">
+        <div class="heart">❤</div>
+        <p>Ayre Gran Via</p>
+        <div class="hotel-price">from 173$</div>
+      </div>
+      <div class="card">
+        <img src="image/hotel_3.avif" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Double or Twin Room</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/hotel_4.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>luxury room</p>
+        <div class="hotel-price">from 941$</div>
+      </div>
+      <div class="card">
+        <img src="image/hotel_7.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Suite with Terrace</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/hotel_6.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Superior Double Room with Terrace</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/hotel_8.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Premium Double Room</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/hotel_5.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Triple Room (2 Adults + 1 Child)</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+    </div>
+
+    <div class="section-title">Availability</div>
+    <div class="scroll-row">
+      <div class="card">
+        <img src="image/availability_1.jpg" alt="Hotel 1">
+        <div class="heart">❤</div>
+        <p>Luxury Bar</p>
+        <div class="hotel-price">from 150$</div>
+      </div>
+      <div class="card">
+        <img src="image/availability_2.jpg" alt="Hotel 2">
+        <div class="heart">❤</div>
+        <p>Outdoor swimming pool</p>
+        <div class="hotel-price">from 173$</div>
+      </div>
+      <div class="card">
+        <img src="image/availability_3.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Facilities for disabled guests</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/availability_4.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Lift Service</p>
+        <div class="hotel-price">from 941$</div>
+      </div>
+      <div class="card">
+        <img src="image/availability_5.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Good breakfast</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/availability_6.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Non-smoking rooms</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/availability_7.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>Free WiFi</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+      <div class="card">
+        <img src="image/availability_8.jpg" alt="Hotel 3">
+        <div class="heart">❤</div>
+        <p>24-hour front desk</p>
+        <div class="hotel-price">from 191$</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="category-tab" data-page="flight.html"><i data-lucide="plane"></i>Flights</button>
+    <button class="category-tab" data-page="saved.html"><i data-lucide="heart"></i>Saved</button>
+    <button class="category-tab" data-page="trips.html"><i data-lucide="ticket"></i>My trips</button>
+    <button class="category-tab" data-page="profile.html"><i data-lucide="user-round"></i>Profile</button>
+  </div>
+
+  <!-- JavaScript for Tabs and Nav -->
+  <script>
+    lucide.createIcons();
+
+    // Tab Switching
+    const tabs = document.querySelectorAll('.tab-button');
+    const sections = document.querySelectorAll('.trip-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(sec => sec.classList.add('hidden'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.remove('hidden');
+      });
+    });
+
+    // Bottom nav navigation + active tab
+    const currentPage = location.pathname.split("/").pop();
+    document.querySelectorAll(".category-tab").forEach(button => {
+      const page = button.getAttribute("data-page");
+      if (page === currentPage) {
+        button.classList.add("active");
+      }
+
+      button.addEventListener("click", () => {
+        window.location.href = page;
+      });
+    });
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="trips.js"></script>
+  <script src="date-picker.js"></script>
+  <script>
+    document.getElementById("openDateModal").addEventListener("click", () => {
+  document.getElementById("dateModal").style.display = "flex";
+});
+
+document.getElementById("closeDateModal").addEventListener("click", () => {
+  document.getElementById("dateModal").style.display = "none";
+});
+
+document.getElementById("confirmDates").addEventListener("click", () => {
+  const dep = document.getElementById('departure-date').value;
+  const ret = document.getElementById('return-date').value;
+  const btn = document.getElementById('openDateModal');
+  btn.innerHTML = `<i data-lucide="calendar-days"></i> ${dep} → ${ret || "Return"}`;
+  lucide.createIcons();
+  document.getElementById("dateModal").style.display = "none";
+});
+document.getElementById("dateModal").addEventListener("click", (e) => {
+  if (e.target.id === "dateModal") {
+    e.target.style.display = "none";
+  }
+});
+
+  </script>
+  <script>
+    // Open/close modal
+document.getElementById("openPassengerModal").addEventListener("click", () => {
+  document.getElementById("passengerModal").style.display = "flex";
+});
+
+document.getElementById("closePassengerModal").addEventListener("click", () => {
+  document.getElementById("passengerModal").style.display = "none";
+});
+
+// Count logic
+const counts = {
+  adult: 1,
+  child: 0,
+  baby: 0
+};
+
+document.querySelectorAll(".plus, .minus").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.type;
+    const isPlus = btn.classList.contains("plus");
+
+    if (isPlus) {
+      counts[type]++;
+    } else {
+      if (type === "adult" && counts[type] > 1) counts[type]--;
+      if (type !== "adult" && counts[type] > 0) counts[type]--;
+    }
+
+    document.getElementById(`${type}Count`).textContent = counts[type];
+  });
+});
+
+// Confirm selection
+document.getElementById("confirmPassengers").addEventListener("click", () => {
+  const travelClass = document.querySelector('input[name="travelClass"]:checked').value;
+  const btn = document.getElementById("openPassengerModal");
+
+  btn.innerHTML = `<i data-lucide="user"></i> ${counts.adult + counts.child + counts.baby} Pax, ${travelClass}`;
+  lucide.createIcons();
+  document.getElementById("passengerModal").style.display = "none";
+});
+
+  </script>
+  <script>
+    // Modal open/close
+document.getElementById("openFiltersModal").addEventListener("click", () => {
+  document.getElementById("filtersModal").style.display = "flex";
+});
+
+document.getElementById("closeFiltersModal").addEventListener("click", () => {
+  document.getElementById("filtersModal").style.display = "none";
+});
+
+// Price range sliders
+const minPriceEl = document.getElementById("priceSliderMin");
+const maxPriceEl = document.getElementById("priceSliderMax");
+const minPriceDisplay = document.getElementById("minPrice");
+const maxPriceDisplay = document.getElementById("maxPrice");
+
+function updatePriceDisplay() {
+  const min = parseInt(minPriceEl.value);
+  const max = parseInt(maxPriceEl.value);
+
+  if (min > max) {
+    [minPriceEl.value, maxPriceEl.value] = [max, min];
+  }
+
+  minPriceDisplay.textContent = minPriceEl.value;
+  maxPriceDisplay.textContent = maxPriceEl.value;
+}
+
+minPriceEl.addEventListener("input", updatePriceDisplay);
+maxPriceEl.addEventListener("input", updatePriceDisplay);
+
+// Trip duration slider
+const durationSlider = document.getElementById("durationSlider");
+const durationDisplay = document.getElementById("durationDisplay");
+
+durationSlider.addEventListener("input", () => {
+  durationDisplay.textContent =
+    durationSlider.value === "24" ? "Any" : `Up to ${durationSlider.value} hours`;
+});
+
+// Reset filters
+document.getElementById("resetFilters").addEventListener("click", () => {
+  minPriceEl.value = 0;
+  maxPriceEl.value = 500;
+  updatePriceDisplay();
+  document.querySelector('input[name="stopovers"][value="any"]').checked = true;
+  durationSlider.value = 24;
+  durationDisplay.textContent = "Any";
+});
+
+// Confirm filters
+document.getElementById("confirmFilters").addEventListener("click", () => {
+  const stopovers = document.querySelector('input[name="stopovers"]:checked').value;
+  const price = `${minPriceEl.value} - ${maxPriceEl.value}$`;
+  const duration = durationSlider.value === "24" ? "Any" : `${durationSlider.value}h`;
+
+  const btn = document.getElementById("openFiltersModal");
+  btn.innerHTML = `<i data-lucide="settings-2"></i> Filters (${stopovers}, ${price}, ${duration})`;
+
+  lucide.createIcons();
+  document.getElementById("filtersModal").style.display = "none";
+});
+
+  </script>
+<script>
+  const rangeMin = document.getElementById('rangeMin');
+  const rangeMax = document.getElementById('rangeMax');
+  const minPriceDisplay = document.getElementById('minPrice');
+  const maxPriceDisplay = document.getElementById('maxPrice');
+  const sliderTrack = document.querySelector('.slider-track');
+
+  const minGap = 10;
+  const maxVal = 500;
+
+  function updateDisplay() {
+    const minVal = parseInt(rangeMin.value);
+    const maxValCurrent = parseInt(rangeMax.value);
+    minPriceDisplay.textContent = minVal;
+    maxPriceDisplay.textContent = maxValCurrent;
+    fillSlider(minVal, maxValCurrent);
+  }
+
+  function fillSlider(min, max) {
+    const percent1 = (min / maxVal) * 100;
+    const percent2 = (max / maxVal) * 100;
+    sliderTrack.style.left = percent1 + '%';
+    sliderTrack.style.width = (percent2 - percent1) + '%';
+  }
+
+  rangeMin.addEventListener('input', () => {
+    if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
+      rangeMin.value = parseInt(rangeMax.value) - minGap;
+    }
+    updateDisplay();
+  });
+
+  rangeMax.addEventListener('input', () => {
+    if (parseInt(rangeMax.value) - parseInt(rangeMin.value) < minGap) {
+      rangeMax.value = parseInt(rangeMin.value) + minGap;
+    }
+    updateDisplay();
+  });
+
+  // Initial load
+  updateDisplay();
+</script>
+
+</body>
+</html>

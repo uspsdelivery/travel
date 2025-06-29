@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Editing</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 420px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1.5px solid #d0d7de;
+      font-size: 15px;
+      background-color: #fff;
+      transition: border 0.3s ease;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #0059D6;
+    }
+    .inline-group {
+      display: flex;
+      gap: 10px;
+    }
+    .inline-group input,
+    .inline-group select {
+      flex: 1;
+    }
+    .inline-group .dob-day,
+    .inline-group .dob-year {
+      flex: 0.6;
+    }
+    .note {
+      font-size: 12px;
+      color: #007bff;
+      margin-top: 4px;
+    }
+    .optional {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .save-btn {
+      width: 100%;
+      background: #0059D6;
+      color: white;
+      font-size: 15px;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
+    }
+    .save-btn:hover {
+      background: #004bb5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Editing</h2>
+
+    <div class="section-title">Personal</div>
+    <div class="form-group">
+      <label for="given-name">Given name</label>
+      <input type="text" id="given-name" placeholder="Daryna" />
+      <div class="note">As in passport/ID</div>
+    </div>
+    <div class="form-group">
+      <label for="surname">Surname</label>
+      <input type="text" id="surname" placeholder="Shevchenko" />
+      <div class="note">As in passport/ID</div>
+    </div>
+
+    <div class="form-group inline-group">
+      <div>
+        <label for="nationality">Nationality</label>
+        <select id="nationality">
+          <option>Ukrainian</option>
+          <option>Polish</option>
+          <option>German</option>
+        </select>
+      </div>
+      <div>
+        <label for="gender">Gender</label>
+        <select id="gender">
+          <option>Female</option>
+          <option>Male</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group inline-group">
+      <div class="dob-day">
+        <label for="dob-day">Date of birth</label>
+        <input type="text" id="dob-day" placeholder="26" />
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <select>
+          <option>January</option>
+          <option>February</option>
+          <option>March</option>
+          <option>April</option>
+          <option>May</option>
+          <option>June</option>
+          <option>July</option>
+          <option>August</option>
+          <option>September</option>
+          <option>October</option>
+          <option>November</option>
+          <option>December</option>
+        </select>
+      </div>
+      <div class="dob-year">
+        <label>&nbsp;</label>
+        <input type="text" placeholder="2001" />
+      </div>
+    </div>
+
+    <div class="section-title">Contact <span class="optional">(optional)</span></div>
+    <div class="form-group inline-group">
+      <div>
+        <label for="country-code">Country</label>
+        <input type="text" id="country-code" value="+380" />
+      </div>
+      <div>
+        <label for="phone">Phone number</label>
+        <input type="text" id="phone" placeholder="12 345 67 89" />
+      </div>
+    </div>
+
+    <button class="save-btn" onclick="saveProfile()">Save</button>
+  </div>
+
+   <script>
+    function saveProfile() {
+      alert("Profile saved successfully!");
+      window.location.href = "profile.html"; // Replace with your target URL
+    }
+  </script>
+</body>
+</html>

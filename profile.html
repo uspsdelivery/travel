@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile - SkyGo</title>
+  <link rel="stylesheet" href="css/profile.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="profile-header">
+    <h2>Daryna<br>Shevchenko</h2>
+    <div class="profile-pic">
+      <img src="image/profilepic.png" alt="Daryna Shevchenko" />
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Account</div>
+    <div class="list-item" onclick="window.location.href='editprofie.html'"><span><i data-lucide="user"></i> Personal details</span> <i data-lucide="chevron-right"></i></div>
+    <div class="list-item"><span><i data-lucide="users"></i> Saved travelers</span> <i data-lucide="chevron-right"></i></div>
+    <div class="list-item"><span><i data-lucide="credit-card"></i> Connected cards</span> <i data-lucide="chevron-right"></i></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Settings</div>
+    <div class="list-item"><span><i data-lucide="settings"></i> App preferences</span> <i data-lucide="chevron-right"></i></div>
+    <div class="list-item"><span><i data-lucide="bell"></i> Notifications</span> <i data-lucide="chevron-right"></i></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Alerts and support</div>
+    <div class="list-item"><span><i data-lucide="message-square"></i> Inbox</span> <i data-lucide="chevron-right"></i></div>
+    <div class="list-item" ><span><i data-lucide="mail"></i> Conversations</span> <i data-lucide="chevron-right"></i></div>
+    <div class="list-item" onclick="window.location.href='login.html'"><span><i data-lucide="log-out"></i> Log out</span> <i data-lucide="chevron-right"></i></div>
+    
+
+  </div>
+
+  <div class="bottom-nav">
+    <button class="category-tab" data-page="flight.html"><i data-lucide="plane"></i>Flights</button>
+    <button class="category-tab" data-page="saved.html"><i data-lucide="heart"></i>Saved</button>
+    <button class="category-tab" data-page="trips.html"><i data-lucide="ticket"></i>My trips</button>
+    <button class="category-tab active" data-page="profile.html"><i data-lucide="user-round"></i>Profile</button>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const currentPage = location.pathname.split("/").pop();
+    document.querySelectorAll(".category-tab").forEach(button => {
+      const page = button.getAttribute("data-page");
+      if (page === currentPage) {
+        button.classList.add("active");
+      }
+      button.addEventListener("click", () => {
+        window.location.href = page;
+      });
+    });
+  </script>
+<!-- Add this after lucide.createIcons() -->
+
+</body>
+</html>

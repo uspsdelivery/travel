@@ -1,0 +1,178 @@
+* {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      max-width: 430px;
+      margin: auto;
+    }
+
+    h2 {
+      padding: 20px;
+      margin: 0;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: space-around;
+      background: #e9ecef;
+      padding: 8px;
+      border-radius: 10px;
+      margin: 0 20px 20px;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 10px 0;
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      font-weight: 500;
+      color: #555;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .tab-button.active {
+      background: #fff;
+      color: #007BFF;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .trip-card {
+      background: #fff;
+      margin: 0 20px 20px;
+      padding: 15px 15px 20px;
+      border-radius: 14px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    }
+
+    .trip-date {
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .trip-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .trip-info .label {
+      font-size: 12px;
+      padding: 3px 7px;
+      background-color: #f1f3f5;
+      border-radius: 6px;
+      margin-left: 5px;
+    }
+
+    .trip-route {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .trip-route span {
+      font-size: 20px;
+      color: #7BABEF;
+    }
+
+    .trip-time {
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .trip-extra {
+      display: flex;
+      justify-content: space-between;
+      margin: 14px 0;
+      font-size: 16px;
+    }
+
+    .trip-extra i {
+      margin-right: 5px;
+    }
+
+    .rate-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #0059D6;
+      color: white;
+      font-size: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      z-index: 1000;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    .category-tab {
+      flex: 1;
+      border: none;
+      background: none;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .category-tab.active {
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .category-tab i {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .trip-card {
+  transition: all 0.3s ease;
+}
+
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: #323232;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

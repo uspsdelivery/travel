@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flight Details</title>
+  <link rel="stylesheet" href="css/saved.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="back-button" onclick="(history.back())"><i data-lucide="chevron-left"></i></button>
+       <button class="bell-button" onclick=""><i data-lucide="bell"></i></button>
+      <h2>Trip Details</h2>
+      <h2>Warsaw - Barcelona</h2>
+      <p>3 January</p>
+    </div>
+    <div class="section">
+      <div class="flight-card">
+  <div class="airline">
+    <div class="airline-info">
+      <img src="image/klm.png"alt="KLM Logo" class="airline-logo" />
+      <div>
+        <strong>KLM</strong><br />
+        <small>3 h 10 min in flight</small>
+      </div>
+    </div>
+    <button class="more-btn" onclick="showDetails()">More details</button>
+  </div>
+
+  <div class="flight-time">
+    <div class="timeline">
+      <div class="time-entry">
+        <div class="circle"></div>
+        <div class="info">
+          <time>14:25</time>
+          <span>Warsaw</span>
+          <small>Mon, 3 January • Modlin, WMI</small>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="time-entry">
+        <div class="circle"></div>
+        <div class="info">
+          <time>17:35</time>
+          <span>Barcelona</span>
+          <small>Mon, 3 January • El Prat, BCN</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <div class="rate-card">
+        <h3>
+          Rate Minimal
+          <button class="change-btn" onclick="openModal()">Change rate</button>
+        </h3>
+
+<div class="modal" id="rateModal">
+  <div class="modal-content">
+    <div class="modal-header">Change rate</div>
+    <div id="rateOptions">
+      <div class="rate-option selected" onclick="selectRate(this)">
+        <div class="rate-title"><input type="radio" name="rate" checked> Rate Minimal</div>
+        <ul class="rate-features">
+          <li><svg data-lucide="check" stroke="green"></svg> Personal item</li>
+          <li><svg data-lucide="x" stroke="red"></svg> Luggage 10kg</li>
+          <li><svg data-lucide="x" stroke="red"></svg> Exchange option</li>
+          <li><svg data-lucide="x" stroke="red"></svg> Return option</li>
+        </ul>
+      </div>
+
+      <div class="rate-option" onclick="selectRate(this)">
+        <div class="rate-title"><input type="radio" name="rate"> Rate Basic</div>
+        <ul class="rate-features">
+          <li><svg data-lucide="check" stroke="green"></svg> Personal item + Cabin baggage</li>
+          <li><svg data-lucide="check" stroke="green"></svg> Luggage 10kg</li>
+          <li><svg data-lucide="x" stroke="red"></svg> Exchange option</li>
+          <li><svg data-lucide="x" stroke="red"></svg> Return option</li>
+        </ul>
+      </div>
+
+      <div class="rate-option" onclick="selectRate(this)">
+        <div class="rate-title"><input type="radio" name="rate"> Rate Medium</div>
+        <ul class="rate-features">
+          <li><svg data-lucide="check" stroke="green"></svg> Personal item + Cabin baggage</li>
+          <li><svg data-lucide="check" stroke="green"></svg> Luggage 10kg</li>
+          <li><svg data-lucide="x" stroke="red"></svg> Exchange option</li>
+          <li><svg data-lucide="x" stroke="red"></svg> Return option</li>
+        </ul>
+      </div>
+
+      <div class="rate-option" onclick="selectRate(this)">
+        <div class="rate-title"><input type="radio" name="rate"> Rate Maximum</div>
+        <ul class="rate-features">
+          <li><svg data-lucide="check" stroke="green"></svg> Personal item + Cabin baggage</li>
+          <li><svg data-lucide="check" stroke="green"></svg> Luggage 10kg</li>
+          <li><svg data-lucide="check" stroke="green"></svg> Exchange option</li>
+          <li><svg data-lucide="check" stroke="green"></svg> Return option</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="select-button" onclick="submitRate()">Select</button>
+      <a href="#" id="selectBtn" class="button-fixed">Select</a>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+        <ul class="rate-options">
+  <li><i data-lucide="check"></i> Personal item</li>
+  <li class="unavailable"><i data-lucide="x"></i> Luggage 10kg</li>
+  <li class="unavailable"><i data-lucide="x"></i> Exchange option</li>
+  <li class="unavailable"><i data-lucide="x"></i> Return option</li>
+     </ul>
+    </div>
+    </div>
+  </div>
+
+  <a href="#" id="buyTicketBtn" class="button-fixed">Buy ticket for 230 USD</a>
+
+
+  <script>
+    function showDetails() {
+      alert('More flight details coming soon!');
+    }
+
+    function changeRate() {
+      alert('Rate change options coming soon!');
+    }
+
+    function buyTicket() {
+      alert('Proceeding to buy ticket for 230 USD');
+    }
+  </script>
+  <script>lucide.createIcons();</script>
+  <script>
+  lucide.createIcons();
+
+  function openModal() {
+    document.getElementById('rateModal').style.display = 'flex';
+  }
+
+  function selectRate(element) {
+    document.querySelectorAll('.rate-option').forEach(el => el.classList.remove('selected'));
+    element.classList.add('selected');
+    element.querySelector('input[type="radio"]').checked = true;
+  }
+
+  function submitRate() {
+    alert('Rate selected!');
+    document.getElementById('rateModal').style.display = 'none';
+  }
+  
+
+</script>
+
+
+</body>
+</html>
